@@ -1,5 +1,8 @@
 FROM pataquets/collectd-debug
 
 RUN \
-  cat /etc/collectd/conf-available/read-* | tee -a /etc/collectd/collectd.conf && \
-  nl /etc/collectd/collectd.conf
+  ln -vs /etc/collectd/conf-available/read-* \
+    /etc/collectd/conf.d && \
+  nl \
+    /etc/collectd/collectd.conf \
+    /etc/collectd/conf.d/*
